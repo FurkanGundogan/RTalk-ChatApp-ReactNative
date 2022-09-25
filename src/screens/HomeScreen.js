@@ -1,14 +1,19 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-
-const HomeScreen = () => {
+import { SafeAreaView } from 'react-native-safe-area-context';
+const HomeScreen = ({navigation}) => {
   return (
-    <View>
+    <SafeAreaView style={styles.container}>
       <Text>HomeScreen</Text>
-    </View>
+      <Button title='Open Contacts' onPress={()=>navigation.navigate("Contacts")}/>
+    </SafeAreaView>
   )
 }
 
 export default HomeScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+})

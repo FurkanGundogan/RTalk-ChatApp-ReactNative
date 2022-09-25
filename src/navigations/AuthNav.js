@@ -1,0 +1,10 @@
+import React from "react";
+import HomeNav from "./HomeNav";
+import SignNav from "./SignNav";
+
+const AuthNav = () => {
+  const auth = true;
+  return <>{auth ? <HomeNav /> : <SignNav />}</>;
+};
+
+export default AuthNav;
