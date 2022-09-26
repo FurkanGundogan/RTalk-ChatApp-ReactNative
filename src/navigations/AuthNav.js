@@ -3,7 +3,7 @@ import HomeNav from "./HomeNav";
 import SignNav from "./SignNav";
 
 const AuthNav = () => {
-  const auth = true;
+  const auth = false;
   return <>{auth ? <HomeNav /> : <SignNav />}</>;
 };
 
