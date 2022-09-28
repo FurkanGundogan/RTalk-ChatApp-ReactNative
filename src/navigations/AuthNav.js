@@ -4,9 +4,10 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { signIn } from "../utils/store";
 import HomeNav from "./HomeNav";
 import SignNav from "./SignNav";
-import { auth } from "../utils/firebase";
+import { auth, db } from "../utils/firebase";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AutoLoginLoadingScreen from "../screens/AutoLoginLoadingScreen";
+import { doc, getDoc } from "firebase/firestore";
 const AuthNav = () => {
   const dispatch = useDispatch();
   const [loading, setloading] = useState(false);
@@ -15,20 +16,20 @@ const AuthNav = () => {
 
   const getUserFromLocal = async () => {
     const value = await AsyncStorage.getItem("@user");
-    console.log("value:",value)
     if (value !== null) {
       let myval = JSON.parse(value);
       const { email, password } = myval;
 
-      signInWithEmailAndPassword(auth, email, password).then((response) => {
-        dispatch(
-          signIn({
-            email: email,
-            password: password,
-          })
-        );
-        setloading(false);
-      });
+      signInWithEmailAndPassword(auth, email, password).then(
+        async (response) => {
+          const userDoc = doc(db, "users", response.user.uid);
+          const userRef = await getDoc(userDoc);
+          if (userRef.exists()) {
+            setloading(false);
+            dispatch(signIn(userRef.data()));
+          }
+        }
+      );
     } else {
       setloading(false);
     }
