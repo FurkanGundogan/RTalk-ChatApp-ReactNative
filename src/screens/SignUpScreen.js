@@ -52,37 +52,37 @@ const SignUpScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={Signstyles.container}>
-      {loading && <ActivityIndicator size="large" style={Signstyles.loading} />}
-      <Text style={Signstyles.APPtitle}>R-TALKS</Text>
-      <Text style={Signstyles.title}>SIGN UP</Text>
+    <View style={SignStyles.container}>
+      {loading && <ActivityIndicator size="large" style={SignStyles.loading} />}
+      <Text style={SignStyles.APPtitle}>R-TALKS</Text>
+      <Text style={SignStyles.title}>SIGN UP</Text>
       <TextInput
-        style={Signstyles.textInput}
+        style={SignStyles.textInput}
         placeholder="Firstname"
         value={userInfo?.firstName}
         onChangeText={(e) => handleChange(e, "firstname")}
       />
       <TextInput
-        style={Signstyles.textInput}
+        style={SignStyles.textInput}
         placeholder="Lastname"
         value={userInfo?.lastName}
         onChangeText={(e) => handleChange(e, "lastname")}
       />
       <TextInput
-        style={Signstyles.textInput}
+        style={SignStyles.textInput}
         placeholder="Email"
         value={userInfo?.email}
         onChangeText={(e) => handleChange(e, "email")}
       />
       <TextInput
-        style={Signstyles.textInput}
+        style={SignStyles.textInput}
         placeholder="Password"
         secureTextEntry
         value={userInfo?.password}
         onChangeText={(e) => handleChange(e, "password")}
       />
       <TextInput
-        style={Signstyles.textInput}
+        style={SignStyles.textInput}
         placeholder="Confirm Password"
         secureTextEntry
         value={userInfo?.confirmPassword}
@@ -90,24 +90,24 @@ const SignUpScreen = ({ navigation }) => {
       />
       <TouchableOpacity
         style={{
-          ...Signstyles.submitbutton,
-          ...(loading ? Signstyles.disableButton : Signstyles.enableButton),
+          ...SignStyles.submitbutton,
+          ...(loading ? SignStyles.disableButton : SignStyles.enableButton),
         }}
         onPress={submitUser}
         disabled={loading}
       >
-        <Text style={Signstyles.buttonText}>SIGN UP</Text>
+        <Text style={SignStyles.buttonText}>SIGN UP</Text>
       </TouchableOpacity>
-      <Text style={Signstyles.askText}>Already have an account?</Text>
+      <Text style={SignStyles.askText}>Already have an account?</Text>
       <TouchableOpacity
         disabled={loading}
         style={{
-          ...Signstyles.submitbutton,
-          ...(loading ? Signstyles.disableButton : Signstyles.enableButton),
+          ...SignStyles.submitbutton,
+          ...(loading ? SignStyles.disableButton : SignStyles.enableButton),
         }}
         onPress={() => navigation.navigate("SignIn")}
       >
-        <Text style={Signstyles.buttonText}>SIGN IN</Text>
+        <Text style={SignStyles.buttonText}>SIGN IN</Text>
       </TouchableOpacity>
     </View>
   );

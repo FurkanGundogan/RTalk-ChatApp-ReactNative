@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-export default Signstyles = StyleSheet.create({
+export default SignStyles = StyleSheet.create({
     container: {
       backgroundColor: "white",
       flex: 1,
