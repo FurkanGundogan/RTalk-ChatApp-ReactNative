@@ -20,5 +20,16 @@ export default SignStyles = StyleSheet.create({
         alignSelf:"center",
 
 
-    }
+    }, imageContainer: {
+        overflow: 'hidden',
+        borderRadius: 20,
+        height:100,
+        width:100,
+        alignSelf:"center",
+        marginBottom:16
+      },
+      image: {
+        width: '100%',
+        height: '100%',
+      },
 })
