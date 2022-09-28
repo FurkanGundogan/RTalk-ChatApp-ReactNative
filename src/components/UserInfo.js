@@ -1,17 +1,24 @@
-import { ActivityIndicator, Button, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { doc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { db, storage } from "../utils/firebase";
 import { updateUser } from "../utils/store";
 import SignStyles from "../styles/SignStyles";
 import UserSettingsStyles from "../styles/UserSettingsStyles";
 import ProfilePhotoPicker from "./ProfilePhotoPicker";
-import uuid from 'react-native-uuid';
+import uuid from "react-native-uuid";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 const UserInfo = () => {
-  const dispatch=useDispatch()
-  const user = useSelector(state => state.auth.user);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
   const [userInfo, setuserInfo] = useState(user);
   const [imageChanged, setImageChanged] = useState(false);
 
@@ -24,31 +31,32 @@ const UserInfo = () => {
   };
 
   const handleSaveProfile = async () => {
-    setLoading(true)
-    let newUrl = ""
-    const oldUrl=userInfo.photoURL
-    if(imageChanged){
-        newUrl = await uploadImageAsync(userInfo.photoURL);
+    setLoading(true);
+    let newUrl = "";
+    const oldUrl = userInfo.photoURL;
+    if (imageChanged) {
+      newUrl = await uploadImageAsync(userInfo.photoURL);
     }
-    
-   
-    const docRef = doc(db, 'users', user.id);
+
+    const docRef = doc(db, "users", user.id);
     await updateDoc(docRef, {
       ...userInfo,
-      photoURL: newUrl!=""?newUrl:oldUrl,
-    }).then(response => {
-      dispatch(updateUser({...userInfo, photoURL: newUrl!=""?newUrl:oldUrl}));
-      alert('Update Successfull')
-      setLoading(false)
-    }).catch((err) => {
+      photoURL: newUrl != "" ? newUrl : oldUrl,
+    })
+      .then((response) => {
+        dispatch(
+          updateUser({ ...userInfo, photoURL: newUrl != "" ? newUrl : oldUrl })
+        );
+        alert("Update Successfull");
+        setLoading(false);
+      })
+      .catch((err) => {
         alert(err.message);
         setLoading(false);
       });
   };
 
-
   async function uploadImageAsync(uri) {
-
     const blob = await new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.onload = function () {
@@ -63,7 +71,6 @@ const UserInfo = () => {
       xhr.send(null);
     });
 
-
     const fileRef = ref(storage, uuid.v4());
     const result = await uploadBytes(fileRef, blob);
 
@@ -72,15 +79,25 @@ const UserInfo = () => {
 
   return (
     <View>
-     <ProfilePhotoPicker userInfo={userInfo} setuserInfo={setuserInfo} setImageChanged={setImageChanged} />
+      <ProfilePhotoPicker
+        userInfo={userInfo}
+        setuserInfo={setuserInfo}
+        setImageChanged={setImageChanged}
+      />
       <TextInput
-        style={[SignStyles.textInput,loading && UserSettingsStyles.disableButton]}
+        style={[
+          SignStyles.textInput,
+          loading && UserSettingsStyles.disableButton,
+        ]}
         placeholder="First Name"
         value={userInfo?.firstName}
         onChangeText={(e) => handleChange(e, "firstName")}
       />
       <TextInput
-        style={[SignStyles.textInput,loading && UserSettingsStyles.disableButton]}
+        style={[
+          SignStyles.textInput,
+          loading && UserSettingsStyles.disableButton,
+        ]}
         placeholder="Last Name"
         value={userInfo?.lastName}
         onChangeText={(e) => handleChange(e, "lastName")}
@@ -96,7 +113,9 @@ const UserInfo = () => {
         <Text style={SignStyles.buttonText}>SAVE</Text>
       </TouchableOpacity>
 
-      {loading && <ActivityIndicator size="large" style={UserSettingsStyles.indicator} />}
+      {loading && (
+        <ActivityIndicator size="large" style={UserSettingsStyles.indicator} />
+      )}
     </View>
   );
 };
