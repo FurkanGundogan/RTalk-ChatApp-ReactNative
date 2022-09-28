@@ -1,10 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
 import AuthNav from './src/navigations/AuthNav';
+import { store } from './src/utils/store';
 
 export default function App() {
   return (
-    <AuthNav/>
+    <Provider store={store}>
+      <AuthNav/>
+    </Provider>
   );
 }
 
