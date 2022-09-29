@@ -21,10 +21,25 @@ const authSlice = createSlice({
   },
 });
 
+
+const chatListSlice = createSlice({
+  name: 'chatList',
+  initialState: [],
+  reducers: {
+    setChatList: (state, action) => {
+      const list=action.payload
+      if(list===null) return null
+      return list
+    },  
+  },
+});
+
 export const {signIn, updateUser,logOut} = authSlice.actions;
+export const {setChatList} = chatListSlice.actions;
 
 export const store = configureStore({
   reducer: {
     auth: authSlice.reducer,
+    chatList: chatListSlice.reducer,
   },
 });
