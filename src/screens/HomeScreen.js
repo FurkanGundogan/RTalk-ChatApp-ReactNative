@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text } from "react-native";
+import { Button, FlatList, StyleSheet, Text } from "react-native";
 import React, { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import HomeHeader from "../components/HomeHeader";
@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setChatList } from "../utils/store";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "../utils/firebase";
+import ChatListItem from "../components/ChatListItem";
 const HomeScreen = ({ navigation }) => {
   const chatList = useSelector((state) => state?.chatList);
   const dispatch = useDispatch();
@@ -25,17 +26,19 @@ const HomeScreen = ({ navigation }) => {
 
     () => unsubscribe();
   }, []);
-
-  console.log("Chat List: ", chatList);
+  
   return (
     <SafeAreaView style={styles.container}>
       <HomeHeader />
       <Text>HomeScreen</Text>
       <Text>{chatList?.length}</Text>
-      <Button
-        title="Open Contacts"
-        onPress={() => navigation.navigate("Contacts")}
-      />
+      <FlatList
+      style={styles.tabsContainer}
+      showsHorizontalScrollIndicator={false}
+      data={chatList}
+      keyExtractor={(item) => item.id}
+      renderItem={({ item, index }) => <ChatListItem item={item} index={index} />}
+    />
     </SafeAreaView>
   );
 };

@@ -60,13 +60,13 @@ const SignUpScreen = ({ navigation }) => {
         style={SignStyles.textInput}
         placeholder="Firstname"
         value={userInfo?.firstName}
-        onChangeText={(e) => handleChange(e, "firstname")}
+        onChangeText={(e) => handleChange(e, "firstName")}
       />
       <TextInput
         style={SignStyles.textInput}
         placeholder="Lastname"
         value={userInfo?.lastName}
-        onChangeText={(e) => handleChange(e, "lastname")}
+        onChangeText={(e) => handleChange(e, "lastName")}
       />
       <TextInput
         style={SignStyles.textInput}

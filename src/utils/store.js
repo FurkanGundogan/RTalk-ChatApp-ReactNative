@@ -34,12 +34,28 @@ const chatListSlice = createSlice({
   },
 });
 
+const messagesSlice = createSlice({
+  name: 'messages',
+  initialState: [],
+  reducers: {
+    setMessages: (state, action) => {
+      /// payload ile setlemeyi düzelt
+      const messages=action?.payload
+      const chatId=action?.payload[0]?.data?.chatId
+      if(chatId===null) return state
+      return [...state,{chatId:chatId,messageList:messages}]
+    },  
+  },
+});
+
 export const {signIn, updateUser,logOut} = authSlice.actions;
 export const {setChatList} = chatListSlice.actions;
+export const {setMessages} = messagesSlice.actions;
 
 export const store = configureStore({
   reducer: {
     auth: authSlice.reducer,
     chatList: chatListSlice.reducer,
+    messages: messagesSlice.reducer,
   },
 });
