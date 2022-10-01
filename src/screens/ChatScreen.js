@@ -9,7 +9,7 @@ const ChatScreen = ({ navigation }) => {
   const route=useRoute()
   const {messageId} = route?.params
   const chatMessagesList = useSelector((state) => state?.messages[messageId])
-  console.log("messageId:",messageId)
+ 
   useEffect(() => {
     navigation.setOptions({
       headerShown: true,
@@ -34,7 +34,6 @@ const ChatScreen = ({ navigation }) => {
 
   return (
     <FlatList
-      style={styles.tabsContainer}
       showsHorizontalScrollIndicator={false}
       data={chatMessagesList}
       keyExtractor={(item) => item.id}

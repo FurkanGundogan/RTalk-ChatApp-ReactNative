@@ -23,7 +23,7 @@ const ChatListItem = ({ item }) => {
   // to show last message
   const chatMessagesList = useSelector((state) => state?.messages[item.id])
 
-  console.log("chatMessagesList:",chatMessagesList)
+
   const [lastMessage, setLastMessage] = useState();
   useEffect(() => {
     const lastMsgIndex =
