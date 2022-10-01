@@ -116,7 +116,7 @@ const ChatListItem = ({ item }) => {
           {contact && contact?.firstName + " " + contact?.lastName}
         </Text>
         <Text style={ChatListItemStyles.lastMsg}>
-          {lastMessage?.messageText}
+          {lastMessage?.text}
         </Text>
       </View>
       <View style={ChatListItemStyles.dateWrapper}>
