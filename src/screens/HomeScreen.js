@@ -4,34 +4,36 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import HomeHeader from "../components/HomeHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { setChatList } from "../utils/store";
-import { collection, onSnapshot, query } from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import ChatListItem from "../components/ChatListItem";
 const HomeScreen = ({ navigation }) => {
+  const user = useSelector((state) => state.auth.user);
   const chatList = useSelector((state) => state?.chatList);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const q = query(collection(db, `chats`));
+    console.log(user.id.length)
+    const q = query(collection(db, `chats`),where('members','array-contains-any',[user.id]));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let allItems = [];
+    
       querySnapshot.forEach((doc) => {
         allItems.push({
           id: doc.id,
           data: doc.data(),
         });
       });
+     
       dispatch(setChatList(allItems));
     });
 
     () => unsubscribe();
-  }, []);
+  }, [user]);
   
   return (
     <SafeAreaView style={styles.container}>
       <HomeHeader />
-      <Text>HomeScreen</Text>
-      <Text>{chatList?.length}</Text>
       <FlatList
       style={styles.tabsContainer}
       showsHorizontalScrollIndicator={false}

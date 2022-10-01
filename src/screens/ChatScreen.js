@@ -3,7 +3,13 @@ import React, { useEffect } from "react";
 
 import ChatHeaderLeft from "../components/ChatHeaderLeft";
 import ChatItem from "../components/ChatItem";
+import { useRoute } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 const ChatScreen = ({ navigation }) => {
+  const route=useRoute()
+  const {messageId} = route?.params
+  const chatMessagesList = useSelector((state) => state?.messages[messageId])
+  console.log("messageId:",messageId)
   useEffect(() => {
     navigation.setOptions({
       headerShown: true,
@@ -30,7 +36,7 @@ const ChatScreen = ({ navigation }) => {
     <FlatList
       style={styles.tabsContainer}
       showsHorizontalScrollIndicator={false}
-      data={data}
+      data={chatMessagesList}
       keyExtractor={(item) => item.id}
       renderItem={({ item, index }) => <ChatItem item={item} index={index} />}
     />

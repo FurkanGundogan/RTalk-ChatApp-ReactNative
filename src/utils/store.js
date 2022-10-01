@@ -1,7 +1,7 @@
-import {createSlice, configureStore} from '@reduxjs/toolkit';
+import { createSlice, configureStore } from "@reduxjs/toolkit";
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState: {
     user: null,
   },
@@ -21,36 +21,35 @@ const authSlice = createSlice({
   },
 });
 
-
 const chatListSlice = createSlice({
-  name: 'chatList',
+  name: "chatList",
   initialState: [],
   reducers: {
     setChatList: (state, action) => {
-      const list=action.payload
-      if(list===null) return null
-      return list
-    },  
+      const list = action.payload;
+      if (list === null) return null;
+      return list;
+    },
   },
 });
 
 const messagesSlice = createSlice({
-  name: 'messages',
-  initialState: [],
+  name: "messages",
+  initialState: {},
   reducers: {
     setMessages: (state, action) => {
-      /// payload ile setlemeyi düzelt
-      const messages=action?.payload
-      const chatId=action?.payload[0]?.data?.chatId
-      if(chatId===null) return state
-      return [...state,{chatId:chatId,messageList:messages}]
-    },  
+      const messages = action?.payload?.messages;
+      const id = action?.payload?.id;
+      if (id === null) return state;
+      return {...state, [id]: messages };
+    },
   },
+ 
 });
 
-export const {signIn, updateUser,logOut} = authSlice.actions;
-export const {setChatList} = chatListSlice.actions;
-export const {setMessages} = messagesSlice.actions;
+export const { signIn, updateUser, logOut } = authSlice.actions;
+export const { setChatList } = chatListSlice.actions;
+export const { setMessages } = messagesSlice.actions;
 
 export const store = configureStore({
   reducer: {
@@ -58,4 +57,8 @@ export const store = configureStore({
     chatList: chatListSlice.reducer,
     messages: messagesSlice.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+  getDefaultMiddleware({
+    serializableCheck: false,
+  }),
 });

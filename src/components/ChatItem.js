@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const ChatItem = () => {
+const ChatItem = ({item}) => {
+
   return (
     <View>
-      <Text>ChatItem</Text>
+      <Text>{item?.data?.text}</Text>
     </View>
   )
 }
