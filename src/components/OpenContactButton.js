@@ -1,9 +1,11 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { Entypo } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 const OpenContactButton = () => {
+  const navigation=useNavigation()
   return (
-    <TouchableOpacity style={styles.buttonWrapper}>
+    <TouchableOpacity style={styles.buttonWrapper} onPress={()=>navigation.navigate('Contacts')}>
       <Entypo name="message" size={42} style={styles.pluscircleo} />
     </TouchableOpacity>
   );

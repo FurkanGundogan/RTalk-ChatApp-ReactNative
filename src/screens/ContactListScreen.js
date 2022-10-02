@@ -1,9 +1,21 @@
-import { Button, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet} from "react-native";
 import React, { useEffect } from "react";
 import { HeaderBackButton } from "@react-navigation/elements";
+import ContactListItem from "../components/ContactListItem";
+import { useDispatch, useSelector } from "react-redux";
+import { setContactList } from "../utils/store";
+import { collection, onSnapshot, query } from "firebase/firestore";
+import { db } from "../utils/firebase";
 const ContactListScreen = ({ navigation }) => {
+
+  // Header styles
   useEffect(() => {
     navigation.setOptions({
+      headerStyle:{ backgroundColor: 'orange',},
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        color:'white',
+      }, headerTintColor: '#fff',
       headerShown: true,
       headerLeft: (props) => (
         <HeaderBackButton
@@ -15,11 +27,35 @@ const ContactListScreen = ({ navigation }) => {
       ),
     });
   });
+
+  const contactList = useSelector((state) => state?.contactList);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+  
+    const q = query(collection(db, `users`));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      let allItems = [];
+      querySnapshot.forEach((doc) => {
+        allItems.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
+     
+      dispatch(setContactList(allItems));
+    });
+
+    () => unsubscribe();
+  }, []);
+
   return (
-    <View>
-      <Text>ContactListScreen</Text>
-      <Button title="Go Chat" onPress={() => navigation.navigate("Chat")} />
-    </View>
+    <FlatList
+      showsHorizontalScrollIndicator={false}
+      data={contactList}
+      keyExtractor={(item) => item.id}
+      renderItem={({ item, index }) => <ContactListItem item={item} index={index} />}
+    />
   );
 };
 
