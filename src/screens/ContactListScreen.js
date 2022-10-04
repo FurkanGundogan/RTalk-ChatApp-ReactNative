@@ -4,10 +4,10 @@ import { HeaderBackButton } from "@react-navigation/elements";
 import ContactListItem from "../components/ContactListItem";
 import { useDispatch, useSelector } from "react-redux";
 import { setContactList } from "../utils/store";
-import { collection, onSnapshot, query } from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "../utils/firebase";
 const ContactListScreen = ({ navigation }) => {
-
+  const user = useSelector((state) => state.auth.user);
   // Header styles
   useEffect(() => {
     navigation.setOptions({
@@ -33,7 +33,7 @@ const ContactListScreen = ({ navigation }) => {
 
   useEffect(() => {
   
-    const q = query(collection(db, `users`));
+    const q = query(collection(db, `users`),where('id','!=',user.id));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let allItems = [];
       querySnapshot.forEach((doc) => {
