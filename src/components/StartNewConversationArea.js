@@ -13,7 +13,6 @@ export default StartNewConversationArea;
 
 const styles = StyleSheet.create({
     bg:{
-        backgroundColor:"white",
         flex:1
       },
       text:{
