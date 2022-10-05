@@ -18,7 +18,7 @@ const ContactListItem = ({ item }) => {
     if(contact!==undefined){
       goAlreadyExistyChat(contact?.id)
     }else{
-      startNewChat()
+      openBlankChat()
     }
   }
 
@@ -26,10 +26,10 @@ const ContactListItem = ({ item }) => {
     // Do not need to create new chat its already exist, just go to chat
     navigation.navigate("Chat", { messageId: chatId });
   }
-  const startNewChat=(chatId)=>{
+  const openBlankChat=()=>{
     console.log("Start new Chat")
     // Create new chat
-    //navigation.navigate("Chat", { messageId: chatId });
+    navigation.navigate("Chat", { messageId: "BLANK" });
   }
   
   return (
