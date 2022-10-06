@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import { SimpleLineIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 const MessageInput = ({input,setInput,sendMessage}) => {
   return (
     <View style={styles.footer}>
@@ -10,8 +10,8 @@ const MessageInput = ({input,setInput,sendMessage}) => {
       value={input}
       onChangeText={(text) => setInput(text)}
     />
-    <TouchableOpacity activeOpacity={0.5} onPress={sendMessage}>
-      <SimpleLineIcons name="arrow-right" size={24} color="blue" />
+    <TouchableOpacity activeOpacity={0.5} onPress={sendMessage} style={styles.button}>
+      <Ionicons name="ios-send-outline" size={24} color="white" />
     </TouchableOpacity>
   </View>
   )
@@ -28,13 +28,24 @@ const styles = StyleSheet.create({
       },
       textInput: {
         bottom: 0,
-        height: 40,
+        height: 50,
         flex: 1,
         marginRight: 5,
         borderColor: "transparent",
-        backgroundColor: "#ECECEC",
+        backgroundColor: "white",
         padding: 10,
-        color: "gray",
-        borderRadius: 30,
+        color: "black",
+        borderRadius: 25,
+        fontSize:16
       },
+      button:{
+        width:50,
+        height:50,
+        justifyContent:"center",
+        alignItems:"center",
+        backgroundColor:"orange",
+        borderRadius:25,
+        
+
+      }
 })

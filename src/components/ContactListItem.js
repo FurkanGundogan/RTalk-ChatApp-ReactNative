@@ -6,29 +6,15 @@ import { useNavigation } from "@react-navigation/native";
 
 const ContactListItem = ({ item }) => {
   const navigation=useNavigation()
-  console.log("item:", item?.data?.id);
+
   const contactId=item?.data?.id
   const user = useSelector((state) => state.auth.user);
   const chat = useSelector((state) => state?.chatList).filter(m=>m?.data?.members?.includes(contactId))[0]
-  // to show last message
-  //const chatMessagesList = useSelector((state) => state?.messages[item.id])
-
+ 
   const goToChat = () =>{
-      console.log("contact:",chat)
-      goAlreadyExistyChat(chat?.id)
-    
+      navigation.navigate("Chat", { messageId: chat?.id, contactId });
   }
 
-  const goAlreadyExistyChat=(chatId)=>{
-    // Do not need to create new chat its already exist, just go to chat
-    navigation.navigate("Chat", { messageId: chatId, contactId,contactId });
-  }
-  const openBlankChat=()=>{
-    console.log("Start new Chat")
-    // Create new chat
-    navigation.navigate("Chat", { messageId: "BLANK" });
-  }
-  
   return (
     <TouchableOpacity style={ChatListItemStyles.chatListItemWrapper}
     onPress={goToChat}

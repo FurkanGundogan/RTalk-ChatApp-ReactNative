@@ -22,8 +22,7 @@ const ChatScreen = ({ navigation }) => {
   const route = useRoute();
   const { contactId } = route?.params;
   const [messageId, setMessageId] = useState(route?.params?.messageId)
-  console.log("id:",messageId)
-
+ 
   const chatMessagesList = useSelector((state) => state?.messages[messageId]);
   useEffect(() => {
     navigation.setOptions({
