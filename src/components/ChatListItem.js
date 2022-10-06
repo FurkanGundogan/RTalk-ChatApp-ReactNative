@@ -92,7 +92,7 @@ const ChatListItem = ({ item }) => {
   };
 
   const goToChat = () => {
-    navigation.navigate("Chat", { messageId: item.id });
+    navigation.navigate("Chat", { messageId: item.id,contactId:contact?.id });
   };
 
   return (
