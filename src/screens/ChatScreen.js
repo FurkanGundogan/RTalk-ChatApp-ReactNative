@@ -15,7 +15,7 @@ import StartNewConversationArea from "../components/StartNewConversationArea";
 import MessageInput from "../components/MessageInput";
 import { db } from "../utils/firebase";
 import { addDoc, collection, getDoc, serverTimestamp } from "firebase/firestore";
-import { addToChatList, setMessages } from "../utils/store";
+import { setMessages } from "../utils/store";
 const ChatScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);

@@ -29,13 +29,7 @@ const chatListSlice = createSlice({
       const list = action.payload;
       if (list === null) return null;
       return list;
-    },
-    addToChatList: (state, action) => {
-      const newChat = action.payload;
-      if (newChat === null) return null;
-      console.log("return:",[...state,newChat])
-      return [...state,newChat];
-    },
+    }
   },
 });
 
@@ -67,7 +61,7 @@ const contactListSlice = createSlice({
 });
 
 export const { signIn, updateUser, logOut } = authSlice.actions;
-export const { setChatList,addToChatList } = chatListSlice.actions;
+export const { setChatList } = chatListSlice.actions;
 export const { setMessages } = messagesSlice.actions;
 export const { setContactList } = contactListSlice.actions;
 
