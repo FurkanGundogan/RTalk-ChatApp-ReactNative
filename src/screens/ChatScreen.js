@@ -32,6 +32,8 @@ const ChatScreen = ({ navigation }) => {
   });
   const [input, setInput] = useState("");
   const sendMessage = async () => {
+    if(input.trim()==="") return
+
     //handle create chat / send msg
     if (chatMessagesList === undefined) {
       // handle create chat + send msg

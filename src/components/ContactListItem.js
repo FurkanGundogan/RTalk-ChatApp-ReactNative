@@ -15,6 +15,7 @@ const ContactListItem = ({ item }) => {
       navigation.navigate("Chat", { messageId: chat?.id, contactId });
   }
 
+
   return (
     <TouchableOpacity style={ChatListItemStyles.chatListItemWrapper}
     onPress={goToChat}
