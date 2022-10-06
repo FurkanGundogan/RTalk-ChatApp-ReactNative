@@ -27,6 +27,9 @@ const ChatScreen = ({ navigation }) => {
   useEffect(() => {
     navigation.setOptions({
       headerTitle: "",
+      headerStyle: {
+        backgroundColor: 'orange',
+      },
       headerLeft: () => <ChatHeaderLeft contactId={contactId}/>,
     });
   });

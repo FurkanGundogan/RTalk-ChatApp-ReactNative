@@ -9,10 +9,14 @@ import { doc, getDoc } from "firebase/firestore";
 const ChatHeaderLeft = ({ contactId }) => {
   const [chatContact, setChatContact] = useState();
   const navigation = useNavigation();
-  useEffect(async () => {
-    const docRefContact = doc(db, "users", contactId);
-    const docSnapContact = await getDoc(docRefContact);
-    setChatContact(docSnapContact?.data());
+  useEffect(() => {
+    const setMyContact = async () => {
+      const docRefContact = doc(db, "users", contactId);
+      const docSnapContact = await getDoc(docRefContact);
+      setChatContact(docSnapContact?.data());
+    };
+
+    setMyContact();
   }, []);
 
   // contact avatar ekle
@@ -22,11 +26,16 @@ const ChatHeaderLeft = ({ contactId }) => {
         <Ionicons name="md-arrow-back" size={32} color="black" />
       </TouchableOpacity>
       {
-        <View>
-          <TouchableOpacity style={ChatListItemStyles.imageContainer}>
+        <View style={styles.chatHeaderContainer}>
+          <TouchableOpacity
+            style={[
+              ChatListItemStyles.imageContainer,
+              styles.headerImageWrapper,
+            ]}
+          >
             <Image
               alt="ProfilePhoto"
-              style={[ChatListItemStyles.image,styles.headerImageWrapper]}
+              style={ChatListItemStyles.image}
               source={{
                 uri: chatContact?.photoURL
                   ? chatContact?.photoURL
@@ -34,6 +43,11 @@ const ChatHeaderLeft = ({ contactId }) => {
               }}
             />
           </TouchableOpacity>
+          <View style={styles.nameWrapper}>
+            <Text style={styles.name}>
+              {chatContact?.firstName + " " + chatContact?.lastName}
+            </Text>
+          </View>
         </View>
       }
     </>
@@ -43,20 +57,29 @@ const ChatHeaderLeft = ({ contactId }) => {
 export default ChatHeaderLeft;
 
 const styles = StyleSheet.create({
-  headerImageWrapper:{
-    overflow: "hidden",
-    justifyContent:"center",
-    alignItems:"center",
-    borderRadius: 20,
-    height: 40,
-    width: 40,
-    shadowColor: "black",
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.51,
-    shadowRadius: 30,
-    elevation: 8,
-  }
+  chatHeaderContainer: {
+    height: 60,
+    flexDirection: "row",
+    flex: 1,
+    alignItems: "center",
+  },
+  headerImageWrapper: {
+    borderRadius: 25,
+    height: 50,
+    width: 50,
+    marginLeft: 8,
+  },
+  nameWrapper: {
+    marginLeft: 8,
+  },
+  name: {
+    fontSize: 16,
+    fontWeight: "800",
+    color: "black",
+    letterSpacing: 0.6,
+    color: "white",
+    textShadowColor: "black",
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 2,
+  },
 });
