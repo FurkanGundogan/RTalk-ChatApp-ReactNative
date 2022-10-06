@@ -11,6 +11,7 @@ import OpenContactButton from "../components/OpenContactButton";
 const HomeScreen = ({ navigation }) => {
   const user = useSelector((state) => state.auth.user);
   const chatList = useSelector((state) => state?.chatList);
+
   const dispatch = useDispatch();
 
   useEffect(() => {

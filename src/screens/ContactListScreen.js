@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet} from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 import React, { useEffect } from "react";
 import { HeaderBackButton } from "@react-navigation/elements";
 import ContactListItem from "../components/ContactListItem";
@@ -11,11 +11,12 @@ const ContactListScreen = ({ navigation }) => {
   // Header styles
   useEffect(() => {
     navigation.setOptions({
-      headerStyle:{ backgroundColor: 'orange',},
+      headerStyle: { backgroundColor: "orange" },
       headerTitleStyle: {
-        fontWeight: 'bold',
-        color:'white',
-      }, headerTintColor: '#fff',
+        fontWeight: "bold",
+        color: "white",
+      },
+      headerTintColor: "#fff",
       headerShown: true,
       headerLeft: (props) => (
         <HeaderBackButton
@@ -32,8 +33,7 @@ const ContactListScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-  
-    const q = query(collection(db, `users`),where('id','!=',user.id));
+    const q = query(collection(db, `users`), where("id", "!=", user.id));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let allItems = [];
       querySnapshot.forEach((doc) => {
@@ -42,7 +42,7 @@ const ContactListScreen = ({ navigation }) => {
           data: doc.data(),
         });
       });
-     
+
       dispatch(setContactList(allItems));
     });
 
@@ -54,7 +54,9 @@ const ContactListScreen = ({ navigation }) => {
       showsHorizontalScrollIndicator={false}
       data={contactList}
       keyExtractor={(item) => item.id}
-      renderItem={({ item, index }) => <ContactListItem item={item} index={index} />}
+      renderItem={({ item, index }) => (
+        <ContactListItem item={item} index={index} />
+      )}
     />
   );
 };

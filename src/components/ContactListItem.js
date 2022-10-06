@@ -9,22 +9,19 @@ const ContactListItem = ({ item }) => {
   console.log("item:", item?.data?.id);
   const contactId=item?.data?.id
   const user = useSelector((state) => state.auth.user);
-  const contact = useSelector((state) => state?.chatList).filter(m=>m?.data?.members?.includes(contactId))[0]
+  const chat = useSelector((state) => state?.chatList).filter(m=>m?.data?.members?.includes(contactId))[0]
   // to show last message
   //const chatMessagesList = useSelector((state) => state?.messages[item.id])
 
   const goToChat = () =>{
-    console.log("contact:",contact)
-    if(contact!==undefined){
-      goAlreadyExistyChat(contact?.id)
-    }else{
-      openBlankChat()
-    }
+      console.log("contact:",chat)
+      goAlreadyExistyChat(chat?.id)
+    
   }
 
   const goAlreadyExistyChat=(chatId)=>{
     // Do not need to create new chat its already exist, just go to chat
-    navigation.navigate("Chat", { messageId: chatId });
+    navigation.navigate("Chat", { messageId: chatId, contactId,contactId });
   }
   const openBlankChat=()=>{
     console.log("Start new Chat")
