@@ -4,7 +4,6 @@ import React from "react";
 const ChatItem = ({ item, contactId }) => {
   const sender = item.data.senderId;
   const msgDate = new Date(item?.data?.timestamp?.seconds * 1000);
-  console.log("msgDate", msgDate);
   const t = msgDate
     ?.toLocaleTimeString()
     .replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
