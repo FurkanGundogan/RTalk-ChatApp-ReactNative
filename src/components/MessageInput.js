@@ -25,6 +25,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
         width: "100%",
         padding: 15,
+        backgroundColor:"#dbdad7",
+        borderTopColor:"white",
+        borderTopWidth:1
       },
       textInput: {
         bottom: 0,

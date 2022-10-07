@@ -14,42 +14,41 @@ import { useDispatch, useSelector } from "react-redux";
 import StartNewConversationArea from "../components/StartNewConversationArea";
 import MessageInput from "../components/MessageInput";
 import { db } from "../utils/firebase";
-import { addDoc, collection, getDoc, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  getDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { setMessages } from "../utils/store";
 const ChatScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const route = useRoute();
   const { contactId } = route?.params;
-  const [messageId, setMessageId] = useState(route?.params?.messageId)
+  const [messageId, setMessageId] = useState(route?.params?.messageId);
 
   const chatMessagesList = useSelector((state) => state?.messages[messageId]);
   useEffect(() => {
     navigation.setOptions({
       headerTitle: "",
       headerStyle: {
-        backgroundColor: 'orange',
+        backgroundColor: "orange",
       },
-      headerLeft: () => <ChatHeaderLeft contactId={contactId}/>,
+      headerLeft: () => <ChatHeaderLeft contactId={contactId} />,
     });
   });
   const [input, setInput] = useState("");
   const sendMessage = async () => {
-    if(input.trim()==="") return
+    if (input.trim() === "") return;
 
     //handle create chat / send msg
     if (chatMessagesList === undefined) {
       // handle create chat + send msg
-      const docRef = await addDoc(
-        collection(db, `chats`),
-        {
-          members:[
-            user.id,
-            contactId
-          ],
-        }
-      );
-    
+      const docRef = await addDoc(collection(db, `chats`), {
+        members: [user.id, contactId],
+      });
+
       const docRef2 = await addDoc(
         collection(db, `chats/${docRef?.id}/messages`),
         {
@@ -63,9 +62,13 @@ const ChatScreen = ({ navigation }) => {
       // Add new message to message list and update this chat's messageId
       // After update: message list appears and header changes
       const docSnap = await getDoc(docRef2);
-      dispatch(setMessages({messages:[{data:docSnap?.data(),id:docRef2?.id}],id:docRef?.id}))
-      setMessageId(docRef?.id)
-
+      dispatch(
+        setMessages({
+          messages: [{ data: docSnap?.data(), id: docRef2?.id }],
+          id: docRef?.id,
+        })
+      );
+      setMessageId(docRef?.id);
     } else {
       // handle send msg
       const docRef = await addDoc(
@@ -88,10 +91,11 @@ const ChatScreen = ({ navigation }) => {
       ) : (
         <FlatList
           showsHorizontalScrollIndicator={false}
+          style={{backgroundColor:"#dbdad7"}}
           data={chatMessagesList}
           keyExtractor={(item) => item.id}
           renderItem={({ item, index }) => (
-            <ChatItem item={item} index={index} />
+            <ChatItem item={item} index={index} contactId={contactId}/>
           )}
         />
       )}
