@@ -1,6 +1,6 @@
 import {
+  Keyboard,
   StyleSheet,
-  Text,
   TextInput,
   TouchableOpacity,
   View,
@@ -14,20 +14,27 @@ const MessageInput = ({ input, setInput, sendMessage }) => {
 
   return (
     <>
-      {show && (
-        <View style={{ position: "absolute" }}>
-          <EmojiModal
-            onEmojiSelected={(emoji) => {
-              setInput(input + " " + emoji);
-            }}
-          />
-        </View>
-      )}
-
-      <View style={styles.footer}>
+      <View style={show ? styles.emojiShowFooter : styles.footer}>
+        {show && (
+          <View style={styles.emojiModalWrapper}>
+            <EmojiModal
+              emojiSize={42}
+              modalStyle={{ backgroundColor: "pink" }}
+              containerStyle={styles.emojiModal}
+              onEmojiSelected={(emoji) => {
+                setInput(input + " " + emoji);
+              }}
+              onPressOutside={() => setShow(!show)}
+            />
+          </View>
+        )}
         <View style={styles.textAreaWrapper}>
           <TouchableOpacity
-            onPress={() => setShow(!show)}
+            onPress={() => {
+              Keyboard.dismiss()
+              setShow(!show);
+       
+            }}
             activeOpacity={0.5}
             style={styles.smileybutton}
           >
@@ -49,7 +56,10 @@ const MessageInput = ({ input, setInput, sendMessage }) => {
         </View>
         <TouchableOpacity
           activeOpacity={0.5}
-          onPress={sendMessage}
+          onPress={() => {
+            sendMessage();
+            setShow(false);
+          }}
           style={styles.button}
         >
           <Ionicons name="ios-send-outline" size={24} color="white" />
@@ -71,9 +81,29 @@ const styles = StyleSheet.create({
     borderTopColor: "white",
     borderTopWidth: 1,
   },
+  emojiShowFooter: {
+    flexDirection: "row",
+    width: "100%",
+    padding: 8,
+    backgroundColor: "#dbdad7",
+    borderTopColor: "white",
+    borderTopWidth: 1,
+    height: 386,
+    alignItems: "flex-start",
+  },
+  emojiModalWrapper: {
+    position: "absolute",
+    bottom: 4,
+    left: 8,
+    width: "100%",
+  },
+  emojiModal: {
+    borderRadius: 0,
+    width: "100%",
+  },
   textInput: {
     color: "black",
-    fontSize: 16,
+    fontSize: 20,
     flex: 1,
 
     alignItems: "center",
