@@ -19,7 +19,6 @@ const MessageInput = ({ input, setInput, sendMessage }) => {
           <View style={styles.emojiModalWrapper}>
             <EmojiModal
               emojiSize={42}
-              modalStyle={{ backgroundColor: "pink" }}
               containerStyle={styles.emojiModal}
               onEmojiSelected={(emoji) => {
                 setInput(input + " " + emoji);
@@ -31,12 +30,14 @@ const MessageInput = ({ input, setInput, sendMessage }) => {
         <View style={styles.textAreaWrapper}>
           <TouchableOpacity
             onPress={() => {
-              Keyboard.dismiss()
+              Keyboard.dismiss();
               setShow(!show);
-       
             }}
             activeOpacity={0.5}
-            style={styles.smileybutton}
+            style={[
+              styles.smileybutton,
+              { backgroundColor: show ? "orange" : "gray" },
+            ]}
           >
             <Octicons name="smiley" size={24} color="white" />
           </TouchableOpacity>
@@ -132,7 +133,6 @@ const styles = StyleSheet.create({
   smileybutton: {
     width: 24,
     height: 24,
-    backgroundColor: "orange",
     borderRadius: 12,
     marginRight: 8,
     top: 3,
