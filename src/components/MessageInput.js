@@ -8,9 +8,16 @@ import {
 import React, { useState } from "react";
 import { Ionicons, Octicons, Entypo, MaterialIcons } from "@expo/vector-icons";
 import EmojiModal from "react-native-emoji-modal";
+import { useNavigation } from "@react-navigation/native";
 
 const MessageInput = ({ input, setInput, sendMessage }) => {
   const [show, setShow] = useState(false);
+
+  const navigtion=useNavigation()
+  const goToLocationShare=()=>{
+    setShow(false)
+    navigtion.navigate("ShareMap")
+  }
 
   return (
     <>
@@ -48,7 +55,7 @@ const MessageInput = ({ input, setInput, sendMessage }) => {
             onChangeText={(text) => setInput(text)}
           />
           <TouchableOpacity
-            onPress={() => setShow(!show)}
+            onPress={goToLocationShare}
             activeOpacity={0.5}
             style={styles.locationbutton}
           >

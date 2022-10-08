@@ -7,11 +7,11 @@ const ChatItem = ({ item, contactId }) => {
   const t = msgDate
     ?.toLocaleTimeString()
     .replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
-  // chat mesajlarini duzenle
-  // emoji göndermeyi ekle
+
   // konum gondermeyi ekle
   // story
   // theme
+  // deploy
   // readme
 
   return (
