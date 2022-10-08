@@ -8,14 +8,18 @@ import { db } from "../utils/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { setStoryList } from "../utils/store";
 import StoryListItem from "../components/StoryListItem";
+import ShareStoryButton from "../components/ShareStoryButton";
 
 const StoriesScreen = () => {
   const storyList = useSelector((state) => state.storyList);
-  const dispatch=useDispatch()
-  const twentyFourHoursAgo = new Date(new Date()-86400000);
-  
+  const dispatch = useDispatch();
+  const twentyFourHoursAgo = new Date(new Date() - 86400000);
+
   useEffect(() => {
-    const q = query(collection(db, `stories`),where("timestamp", ">=", twentyFourHoursAgo));
+    const q = query(
+      collection(db, `stories`),
+      where("timestamp", ">=", twentyFourHoursAgo)
+    );
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let allItems = [];
       querySnapshot.forEach((doc) => {
@@ -35,16 +39,19 @@ const StoriesScreen = () => {
   // theme
   // deploy pazar
   // readme pazar
-  
+
   return (
     <SafeAreaView style={styles.container}>
-      <HomeHeader/>
+      <HomeHeader />
       <FlatList
-      showsHorizontalScrollIndicator={false}
-      data={storyList}
-      keyExtractor={(item) => item.id}
-      renderItem={({ item, index }) => <StoryListItem item={item} index={index} />}
-    />
+        showsHorizontalScrollIndicator={false}
+        data={storyList}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item, index }) => (
+          <StoryListItem item={item} index={index} />
+        )}
+      />
+      <ShareStoryButton/>
     </SafeAreaView>
   );
 };

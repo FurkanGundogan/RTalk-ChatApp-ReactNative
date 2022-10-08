@@ -6,7 +6,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { useNavigation } from "@react-navigation/native";
 
 const StoryListItem = ({ item }) => {
-    const navigation=useNavigation()
+  const navigation = useNavigation();
   const [contact, setContact] = useState();
 
   useEffect(() => {
@@ -30,8 +30,14 @@ const StoryListItem = ({ item }) => {
   };
 
   return (
-    <TouchableOpacity style={ChatListItemStyles.chatListItemWrapper}
-    onPress={()=>navigation.navigate('StoryDetail',{contact:contact,data:item?.data})}
+    <TouchableOpacity
+      style={ChatListItemStyles.chatListItemWrapper}
+      onPress={() =>
+        navigation.navigate("StoryDetail", {
+          contact: contact,
+          data: item?.data,
+        })
+      }
     >
       <TouchableOpacity style={ChatListItemStyles.imageContainer}>
         <Image

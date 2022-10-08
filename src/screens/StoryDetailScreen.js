@@ -8,7 +8,7 @@ const StoryDetailScreen = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const { contact, data } = route?.params;
-    console.log("contact:",contact)
+
   return (
     <SafeAreaView style={styles.storyDetailContainer}>
       <View style={[ChatListItemStyles.chatListItemWrapper, styles.header]}>

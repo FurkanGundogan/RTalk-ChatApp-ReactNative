@@ -8,6 +8,7 @@ import ContactListScreen from "../screens/ContactListScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import StoriesScreen from "../screens/StoriesScreen";
 import StoryDetailScreen from "../screens/StoryDetailScreen";
+import UploadingImageViewerScreen from "../screens/UploadingImageViewerScreen";
 
 const Stack = createNativeStackNavigator();
 const HomeNav = () => {
@@ -24,12 +25,27 @@ const HomeNav = () => {
         <Stack.Screen name="Chat" component={ChatScreen} />
         <Stack.Screen name="Contacts" component={ContactListScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="Stories" component={StoriesScreen} options={{
+        <Stack.Screen
+          name="Stories"
+          component={StoriesScreen}
+          options={{
             headerShown: false,
-          }}/>
-          <Stack.Screen name="StoryDetail" component={StoryDetailScreen} options={{
+          }}
+        />
+        <Stack.Screen
+          name="StoryDetail"
+          component={StoryDetailScreen}
+          options={{
             headerShown: false,
-          }}/>
+          }}
+        />
+        <Stack.Screen
+          name="UploadImage"
+          component={UploadingImageViewerScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

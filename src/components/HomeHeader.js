@@ -8,11 +8,12 @@ import Tabs from "./Tabs";
 const HomeHeader = () => {
   const navigation=useNavigation()
   const route=useRoute()
+  const title="R-Talks"
   return (
     <>
     <View style={HomeHeaderStyles.homeHeaderContainer}>
       <View style={HomeHeaderStyles.headerTop}>
-      <Text style={HomeHeaderStyles.title}>R-Talks</Text>
+      <Text style={HomeHeaderStyles.title}>{title}</Text>
       <TouchableOpacity onPress={()=>navigation.navigate('Profile')}>
         <MaterialCommunityIcons
           name="account-settings"
