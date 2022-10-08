@@ -10,11 +10,7 @@ const ChatItem = ({ item, contactId }) => {
     ?.toLocaleTimeString()
     .replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
 
-  // konum gondermeyi ekle
-  // story
-  // theme
-  // deploy
-  // readme
+
 
   return (
     <View

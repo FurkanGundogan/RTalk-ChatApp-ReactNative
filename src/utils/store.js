@@ -60,10 +60,23 @@ const contactListSlice = createSlice({
   },
 });
 
+const storyListSlice = createSlice({
+  name: "storyList",
+  initialState: [],
+  reducers: {
+    setStoryList: (state, action) => {
+      const list = action.payload;
+      if (list === null) return null;
+      return list;
+    },
+  },
+});
+
 export const { signIn, updateUser, logOut } = authSlice.actions;
 export const { setChatList } = chatListSlice.actions;
 export const { setMessages } = messagesSlice.actions;
 export const { setContactList } = contactListSlice.actions;
+export const { setStoryList } = storyListSlice.actions;
 
 export const store = configureStore({
   reducer: {
@@ -71,6 +84,7 @@ export const store = configureStore({
     chatList: chatListSlice.reducer,
     messages: messagesSlice.reducer,
     contactList: contactListSlice.reducer,
+    storyList: storyListSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
   getDefaultMiddleware({
