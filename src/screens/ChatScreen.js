@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ChatHeaderLeft from "../components/ChatHeaderLeft";
 import ChatItem from "../components/ChatItem";
 import { useRoute } from "@react-navigation/native";
@@ -27,7 +27,7 @@ const ChatScreen = ({ navigation }) => {
   const route = useRoute();
   const { contactId } = route?.params;
   const [messageId, setMessageId] = useState(route?.params?.messageId);
-
+  const [location, setLocation] = useState("")
   const chatMessagesList = useSelector((state) => state?.messages[messageId]);
   useEffect(() => {
     navigation.setOptions({
@@ -40,7 +40,8 @@ const ChatScreen = ({ navigation }) => {
   });
   const [input, setInput] = useState("");
   const sendMessage = async () => {
-    if (input.trim() === "") return;
+   
+    if ((input.trim() === "")&& (location==="")) return;
 
     //handle create chat / send msg
     if (chatMessagesList === undefined) {
@@ -78,12 +79,17 @@ const ChatScreen = ({ navigation }) => {
           type: "text",
           text: input,
           senderId: user.id,
+          location:location
         }
       );
     }
     setInput("");
+    setLocation("")
+    setShowMap(false)
   };
 
+  const flatListRef=useRef()
+  const [showMap, setShowMap] = useState(false);
   return (
     <>
       {chatMessagesList === undefined ? (
@@ -97,12 +103,20 @@ const ChatScreen = ({ navigation }) => {
           renderItem={({ item, index }) => (
             <ChatItem item={item} index={index} contactId={contactId}/>
           )}
+          ref = {flatListRef}
+          onContentSizeChange={() => {
+            flatListRef.current.scrollToEnd();
+        }}
         />
       )}
       <MessageInput
         input={input}
         setInput={setInput}
         sendMessage={sendMessage}
+        location={location}
+        setLocation={setLocation}
+        showMap={showMap}
+        setShowMap={setShowMap}
       />
     </>
   );

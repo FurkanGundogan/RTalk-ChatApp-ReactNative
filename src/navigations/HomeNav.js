@@ -6,7 +6,7 @@ import HomeScreen from "../screens/HomeScreen";
 import ChatScreen from "../screens/ChatScreen";
 import ContactListScreen from "../screens/ContactListScreen";
 import ProfileScreen from "../screens/ProfileScreen";
-import ShareMapScreen from "../screens/ShareMapScreen";
+
 const Stack = createNativeStackNavigator();
 const HomeNav = () => {
   return (
@@ -22,7 +22,6 @@ const HomeNav = () => {
         <Stack.Screen name="Chat" component={ChatScreen} />
         <Stack.Screen name="Contacts" component={ContactListScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="ShareMap" component={ShareMapScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

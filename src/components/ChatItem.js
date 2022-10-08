@@ -2,9 +2,10 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
 const ChatItem = ({ item, contactId }) => {
+
   const sender = item.data.senderId;
   const msgDate = new Date(item?.data?.timestamp?.seconds * 1000);
-  const t = msgDate
+  const time = msgDate
     ?.toLocaleTimeString()
     .replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
 
@@ -36,8 +37,14 @@ const ChatItem = ({ item, contactId }) => {
             : styles.chatTextTimeRight
         }
       >
-        {t}
+        {time}
       </Text>
+      {
+        item?.data?.location &&
+        <View>
+          <Text>{item?.data?.location.Latitude} {item?.data?.location.Longitude}</Text>
+        </View>
+      }
     </View>
   );
 };

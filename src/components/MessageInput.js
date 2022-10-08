@@ -5,45 +5,97 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useState } from "react";
-import { Ionicons, Octicons, Entypo, MaterialIcons } from "@expo/vector-icons";
-import EmojiModal from "react-native-emoji-modal";
-import { useNavigation } from "@react-navigation/native";
+import React, { useEffect, useRef, useState } from "react";
+import { Ionicons, Octicons, MaterialIcons } from "@expo/vector-icons";
+import * as Location from "expo-location";
+import MyEmojiModal from "./MyEmojiModal";
+import MyShareMapViewer from "./MyShareMapViewer";
 
-const MessageInput = ({ input, setInput, sendMessage }) => {
-  const [show, setShow] = useState(false);
+const MessageInput = ({
+  input,
+  setInput,
+  sendMessage,
+  setLocation,
+  showMap,
+  setShowMap,
+}) => {
+  const [showEmojiModal, setShowEmojiModal] = useState(false);
 
-  const navigtion=useNavigation()
-  const goToLocationShare=()=>{
-    setShow(false)
-    navigtion.navigate("ShareMap")
-  }
+  const toggleLocationShare = () => {
+    setShowEmojiModal(false);
+    Keyboard.dismiss();
+    if (showMap) {
+      setShowMap(!showMap);
+      setLocation("");
+    } else {
+      setShowMap(!showMap);
+    }
+  };
+
+  // MapView methods starts
+  const mapRef = useRef();
+  const getCurrentLocation = async () => {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== "granted") {
+      Alert.alert("Permission to access location was denied");
+      return;
+    }
+
+    let location = await Location.watchPositionAsync(
+      {
+        distanceInterval: 10,
+      },
+      (location) => {
+        mapRef?.current?.animateToRegion({
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+          longitudeDelta: 0.004,
+          latitudeDelta: 0,
+        });
+        setLocation({
+          Latitude: location?.coords?.latitude,
+          Longitude: location?.coords?.longitude,
+        });
+      }
+    );
+  };
+  useEffect(() => {
+    if (showMap) getCurrentLocation();
+  }, [showMap]);
+  // MapView methods end
 
   return (
     <>
-      <View style={show ? styles.emojiShowFooter : styles.footer}>
-        {show && (
-          <View style={styles.emojiModalWrapper}>
-            <EmojiModal
-              emojiSize={42}
-              containerStyle={styles.emojiModal}
-              onEmojiSelected={(emoji) => {
-                setInput(input + " " + emoji);
-              }}
-              onPressOutside={() => setShow(!show)}
-            />
-          </View>
+      <View
+        style={
+          showEmojiModal | showMap ? styles.emojiShowFooter : styles.footer
+        }
+      >
+        {showEmojiModal && (
+          <MyEmojiModal
+            input={input}
+            setInput={setInput}
+            setShowEmojiModal={setShowEmojiModal}
+          />
+        )}
+
+        {showMap && (
+          <MyShareMapViewer
+            mapRef={mapRef}
+            toggleLocationShare={toggleLocationShare}
+          />
         )}
         <View style={styles.textAreaWrapper}>
           <TouchableOpacity
             onPress={() => {
               Keyboard.dismiss();
-              setShow(!show);
+              setShowEmojiModal(!showEmojiModal);
+              setShowMap(false);
             }}
             activeOpacity={0.5}
             style={[
               styles.smileybutton,
-              { backgroundColor: show ? "orange" : "gray" },
+              { backgroundColor: showEmojiModal ? "orange" : "gray" },
             ]}
           >
             <Octicons name="smiley" size={24} color="white" />
@@ -55,7 +107,7 @@ const MessageInput = ({ input, setInput, sendMessage }) => {
             onChangeText={(text) => setInput(text)}
           />
           <TouchableOpacity
-            onPress={goToLocationShare}
+            onPress={toggleLocationShare}
             activeOpacity={0.5}
             style={styles.locationbutton}
           >
@@ -66,7 +118,7 @@ const MessageInput = ({ input, setInput, sendMessage }) => {
           activeOpacity={0.5}
           onPress={() => {
             sendMessage();
-            setShow(false);
+            setShowEmojiModal(false);
           }}
           style={styles.button}
         >
@@ -99,16 +151,7 @@ const styles = StyleSheet.create({
     height: 386,
     alignItems: "flex-start",
   },
-  emojiModalWrapper: {
-    position: "absolute",
-    bottom: 4,
-    left: 8,
-    width: "100%",
-  },
-  emojiModal: {
-    borderRadius: 0,
-    width: "100%",
-  },
+
   textInput: {
     color: "black",
     fontSize: 20,
