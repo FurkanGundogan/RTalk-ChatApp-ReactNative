@@ -1,13 +1,13 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import HomeHeaderStyles from "../styles/HomeHeaderStyles";
 import Tabs from "./Tabs";
 
 const HomeHeader = () => {
   const navigation=useNavigation()
-
+  const route=useRoute()
   return (
     <>
     <View style={HomeHeaderStyles.homeHeaderContainer}>
@@ -21,7 +21,7 @@ const HomeHeader = () => {
         />
       </TouchableOpacity>
       </View>
-      <Tabs/>
+      <Tabs navigation={navigation} routeName={route?.name}/>
     </View>
     
     </>
