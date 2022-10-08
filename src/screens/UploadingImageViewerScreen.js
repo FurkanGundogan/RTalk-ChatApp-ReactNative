@@ -2,37 +2,43 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ChatListItemStyles from "../styles/ChatListItemStyles";
-import { Entypo,MaterialIcons } from "@expo/vector-icons";
+import { Entypo, MaterialIcons } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { db, storage } from "../utils/firebase";
+import { useSelector } from "react-redux";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import uuid from "react-native-uuid";
+import { addDoc, collection } from "firebase/firestore";
 const UploadingImageViewerScreen = () => {
-  const navigation=useNavigation()
-  const route=useRoute()
-  const {image}=route?.params
+  const user = useSelector((state) => state.auth.user);
+  const [loading, setLoading] = useState();
+  const navigation = useNavigation();
+  const route = useRoute();
+  const { image } = route?.params;
   const handleShare = () => {
-    console.log("handleShare",image);
- 
+    console.log("handleShare", image);
+    sendStory()
+    navigation.navigate("Stories");
   };
 
- 
-  /*
-  const handleSaveProfile = async () => {
+  const sendStory = async () => {
     setLoading(true);
     let newUrl = "";
-    const oldUrl = userInfo.photoURL;
-    if (imageChanged) {
-      newUrl = await uploadImageAsync(userInfo.photoURL);
-    }
 
-    const docRef = doc(db, "users", user.id);
-    await updateDoc(docRef, {
-      ...userInfo,
-      photoURL: newUrl != "" ? newUrl : oldUrl,
+      newUrl = await uploadImageAsync(image);
+    
+
+    const docRef = await addDoc(collection(db, `stories`), {
+      senderId: user.id,
+      url: newUrl,
+      timestamp: new Date(),
+      text: "",
     })
       .then((response) => {
-        dispatch(
-          updateUser({ ...userInfo, photoURL: newUrl != "" ? newUrl : oldUrl })
-        );
-        alert("Update Successfull");
+        /*dispatch(
+        updateUser({ ...userInfo, photoURL: newUrl != "" ? newUrl : oldUrl })
+      );*/
+        alert("Shared Successfull");
         setLoading(false);
       })
       .catch((err) => {
@@ -61,7 +67,6 @@ const UploadingImageViewerScreen = () => {
 
     return await getDownloadURL(fileRef);
   }
-*/
 
   return (
     <SafeAreaView style={styles.container}>
@@ -71,15 +76,18 @@ const UploadingImageViewerScreen = () => {
         style={ChatListItemStyles.image}
         source={{
           uri: image
-                ? image
-                : "https://villagesonmacarthur.com/wp-content/uploads/2020/12/Blank-Avatar.png",
+            ? image
+            : "https://villagesonmacarthur.com/wp-content/uploads/2020/12/Blank-Avatar.png",
         }}
       />
       <TouchableOpacity style={styles.shareButton} onPress={handleShare}>
         <Text style={styles.shareText}>Share</Text>
         <Entypo name="circle-with-plus" size={24} color="white" />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.cancelButon} onPress={()=>navigation.goBack() }>
+      <TouchableOpacity
+        style={styles.cancelButon}
+        onPress={() => navigation.goBack()}
+      >
         <MaterialIcons name="cancel" size={24} color="white" />
       </TouchableOpacity>
     </SafeAreaView>
@@ -92,11 +100,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "black",
-
   },
-  cancelButon:{
+  cancelButon: {
     position: "absolute",
-    top:84,
+    top: 84,
     left: 16,
     shadowColor: "#000",
     shadowOffset: {
@@ -133,5 +140,5 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "800",
     marginRight: 8,
-  }
+  },
 });
