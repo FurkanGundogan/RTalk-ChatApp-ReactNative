@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import ChatLocationItem from "./ChatLocationItem";
 
 const ChatItem = ({ item, contactId }) => {
 
@@ -41,9 +42,7 @@ const ChatItem = ({ item, contactId }) => {
       </Text>
       {
         item?.data?.location &&
-        <View>
-          <Text>{item?.data?.location.Latitude} {item?.data?.location.Longitude}</Text>
-        </View>
+        <ChatLocationItem location={item?.data?.location}/>
       }
     </View>
   );
