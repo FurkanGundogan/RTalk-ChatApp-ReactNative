@@ -1,11 +1,4 @@
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { FlatList } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import ChatHeaderLeft from "../components/ChatHeaderLeft";
 import ChatItem from "../components/ChatItem";
@@ -27,7 +20,7 @@ const ChatScreen = ({ navigation }) => {
   const route = useRoute();
   const { contactId } = route?.params;
   const [messageId, setMessageId] = useState(route?.params?.messageId);
-  const [location, setLocation] = useState("")
+  const [location, setLocation] = useState("");
   const chatMessagesList = useSelector((state) => state?.messages[messageId]);
   useEffect(() => {
     navigation.setOptions({
@@ -40,8 +33,7 @@ const ChatScreen = ({ navigation }) => {
   });
   const [input, setInput] = useState("");
   const sendMessage = async () => {
-   
-    if ((input.trim() === "")&& (location==="")) return;
+    if (input.trim() === "" && location === "") return;
 
     //handle create chat / send msg
     if (chatMessagesList === undefined) {
@@ -79,16 +71,16 @@ const ChatScreen = ({ navigation }) => {
           type: "text",
           text: input,
           senderId: user.id,
-          location:location
+          location: location,
         }
       );
     }
     setInput("");
-    setLocation("")
-    setShowMap(false)
+    setLocation("");
+    setShowMap(false);
   };
 
-  const flatListRef=useRef()
+  const flatListRef = useRef();
   const [showMap, setShowMap] = useState(false);
   return (
     <>
@@ -97,16 +89,16 @@ const ChatScreen = ({ navigation }) => {
       ) : (
         <FlatList
           showsHorizontalScrollIndicator={false}
-          style={{backgroundColor:"#dbdad7"}}
+          style={{ backgroundColor: "#dbdad7" }}
           data={chatMessagesList}
           keyExtractor={(item) => item.id}
           renderItem={({ item, index }) => (
-            <ChatItem item={item} index={index} contactId={contactId}/>
+            <ChatItem item={item} index={index} contactId={contactId} />
           )}
-          ref = {flatListRef}
+          ref={flatListRef}
           onContentSizeChange={() => {
             flatListRef.current.scrollToEnd();
-        }}
+          }}
         />
       )}
       <MessageInput

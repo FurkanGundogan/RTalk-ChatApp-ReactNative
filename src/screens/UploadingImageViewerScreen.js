@@ -1,5 +1,5 @@
 import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ChatListItemStyles from "../styles/ChatListItemStyles";
 import { Entypo, MaterialIcons } from "@expo/vector-icons";
@@ -11,18 +11,16 @@ import uuid from "react-native-uuid";
 import { addDoc, collection } from "firebase/firestore";
 const UploadingImageViewerScreen = () => {
   const user = useSelector((state) => state.auth.user);
-  const [loading, setLoading] = useState();
+
   const navigation = useNavigation();
   const route = useRoute();
   const { image } = route?.params;
   const handleShare = () => {
-    console.log("handleShare", image);
     sendStory();
     navigation.navigate("Stories");
   };
 
   const sendStory = async () => {
-    setLoading(true);
     let newUrl = "";
 
     newUrl = await uploadImageAsync(image);
@@ -37,12 +35,10 @@ const UploadingImageViewerScreen = () => {
         /*dispatch(
         updateUser({ ...userInfo, photoURL: newUrl != "" ? newUrl : oldUrl })
       );*/
-        alert("Shared Successfull");
-        setLoading(false);
+        alert("Story Shared Successfully");
       })
       .catch((err) => {
         alert(err.message);
-        setLoading(false);
       });
   };
 

@@ -9,7 +9,7 @@ export default ChatListItemStyles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 8,
     borderBottomColor:"gray",
-    borderBottomWidth:0.5
+    borderBottomWidth:0.6
   },
   imageContainer: {
     overflow: "hidden",

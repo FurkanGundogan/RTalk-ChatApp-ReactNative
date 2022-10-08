@@ -52,7 +52,7 @@ const StoryListItem = ({ item }) => {
       </TouchableOpacity>
       <View style={ChatListItemStyles.titleWrapper}>
         <Text style={ChatListItemStyles.title}>
-          {contact?.firstName + " " + contact?.lastName}
+          {contact && contact?.firstName + " " + contact?.lastName}
         </Text>
       </View>
       <View style={ChatListItemStyles.dateWrapper}>

@@ -2,7 +2,6 @@ import { FlatList, StyleSheet, Text, View } from "react-native";
 import React, { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import HomeHeader from "../components/HomeHeader";
-import { useNavigation, useRoute } from "@react-navigation/native";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import { useDispatch, useSelector } from "react-redux";
@@ -35,7 +34,6 @@ const StoriesScreen = () => {
     () => unsubscribe();
   }, []);
 
-  // story
   // theme
   // deploy pazar
   // readme pazar
@@ -51,7 +49,7 @@ const StoriesScreen = () => {
           <StoryListItem item={item} index={index} />
         )}
       />
-      <ShareStoryButton/>
+      <ShareStoryButton />
     </SafeAreaView>
   );
 };
