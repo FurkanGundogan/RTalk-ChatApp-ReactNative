@@ -2,6 +2,9 @@ import { StyleSheet } from "react-native";
 
 export default HomeHeaderStyles = StyleSheet.create({
   homeHeaderContainer: {
+   
+  },
+  headerTop:{
     backgroundColor: "orange",
     height: 60,
     padding: 12,
