@@ -39,7 +39,14 @@ const StoryListItem = ({ item }) => {
         })
       }
     >
-      <TouchableOpacity style={ChatListItemStyles.imageContainer}>
+      <TouchableOpacity style={ChatListItemStyles.imageContainer}
+      onPress={() =>
+        navigation.navigate("StoryDetail", {
+          contact: contact,
+          data: item?.data,
+        })
+      }
+      >
         <Image
           alt="ProfilePhoto"
           style={ChatListItemStyles.image}
