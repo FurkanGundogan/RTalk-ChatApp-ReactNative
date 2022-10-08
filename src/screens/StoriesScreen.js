@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import HomeHeader from "../components/HomeHeader";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { collection, onSnapshot, query } from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { setStoryList } from "../utils/store";
@@ -12,8 +12,10 @@ import StoryListItem from "../components/StoryListItem";
 const StoriesScreen = () => {
   const storyList = useSelector((state) => state.storyList);
   const dispatch=useDispatch()
+  const twentyFourHoursAgo = new Date(new Date()-86400000);
+  
   useEffect(() => {
-    const q = query(collection(db, `stories`));
+    const q = query(collection(db, `stories`),where("timestamp", ">=", twentyFourHoursAgo));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let allItems = [];
       querySnapshot.forEach((doc) => {
