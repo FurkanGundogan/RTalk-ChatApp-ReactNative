@@ -1,5 +1,5 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ChatListItemStyles from "../styles/ChatListItemStyles";
 import { Entypo, MaterialIcons } from "@expo/vector-icons";
@@ -17,7 +17,7 @@ const UploadingImageViewerScreen = () => {
   const { image } = route?.params;
   const handleShare = () => {
     console.log("handleShare", image);
-    sendStory()
+    sendStory();
     navigation.navigate("Stories");
   };
 
@@ -25,8 +25,7 @@ const UploadingImageViewerScreen = () => {
     setLoading(true);
     let newUrl = "";
 
-      newUrl = await uploadImageAsync(image);
-    
+    newUrl = await uploadImageAsync(image);
 
     const docRef = await addDoc(collection(db, `stories`), {
       senderId: user.id,
