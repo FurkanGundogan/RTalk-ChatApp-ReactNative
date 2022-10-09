@@ -30,7 +30,7 @@ https://user-images.githubusercontent.com/43653193/194752385-833f8f09-fee5-42f6-
 
 [Document 1](https://github.com/FurkanGundogan/RTalk-ChatApp-ReactNative/blob/master/Instructions1.pdf) 
       
-[Document 2](https://expo.dev/](https://github.com/FurkanGundogan/RTalk-ChatApp-ReactNative/blob/master/Instructions%202.pdf) 
+[Document 2](https://github.com/FurkanGundogan/RTalk-ChatApp-ReactNative/blob/master/Instructions%202.pdf) 
 
 
 
