@@ -12,7 +12,11 @@
 
       📸 Image sharing as stories
 
-<h2>Demo Record - Chat</h2>
+<h2>Chat</h2>
+
+<p>The user's chats are displayed on the main page. After the user makes his choice from this list, he is directed to chat with the person he chooses.
+
+If the user presses the button with the message icon, the contact list opens. The user selects a contact from this list and is route to the relevant chat. If there has been no communication between the two users before, a new chat starts with the after first message will send by the user. </p>
 
 https://user-images.githubusercontent.com/43653193/194752385-833f8f09-fee5-42f6-9c28-d71127044710.mp4
 
@@ -38,11 +42,18 @@ https://user-images.githubusercontent.com/43653193/194752385-833f8f09-fee5-42f6-
 ##### [Document 2](https://github.com/FurkanGundogan/RTalk-ChatApp-ReactNative/blob/master/Instructions%202.pdf) 
 
 
-<h2>Demo Record - Story Sharing</h2>
+<h2>Story Sharing</h2>
+<p>
+Users can go to the stories screen from the top menu on homepage. On this screen, there is a list of contents shared by all users within 24 hours. Users can switch to a screen where they can view the content in full screen by selecting a story from the list.
+</p>
 
 https://user-images.githubusercontent.com/43653193/194752769-49fbf651-c282-47fd-8951-eb71a18e702c.mp4
 
-<h2>Demo Record - Profile Settings</h2>
+<h2>Profile Settings</h2>
+
+<p>
+Users can view their profiles by clicking the button in the upper right corner of the screen. On this screen, they can update their profile photos, first names, last names.
+</p>
 
 https://user-images.githubusercontent.com/43653193/194752773-e90aac3c-77d4-49ce-972d-d9f978771810.mp4
 
