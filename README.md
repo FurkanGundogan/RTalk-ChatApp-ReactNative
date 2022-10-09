@@ -27,7 +27,7 @@ https://user-images.githubusercontent.com/43653193/194752385-833f8f09-fee5-42f6-
 ##### [Async Storage](https://github.com/FurkanGundogan/RTalk-ChatApp-ReactNative/blob/master/Instructions1.pdf) | I implemented the async-storage to provide auto-login.
 ##### [Expo Image Picker](https://github.com/FurkanGundogan/RTalk-ChatApp-ReactNative/blob/master/Instructions1.pdf) | I used this feature to be able to upload image on app.
 ##### [Expo Location](https://github.com/FurkanGundogan/RTalk-ChatApp-ReactNative/blob/master/Instructions1.pdf) | I implemented expo-location to provide sharing current location in chat.
-##### [React Native Emoji Modal](https://github.com/FurkanGundogan/RTalk-ChatApp-ReactNative/blob/master/Instructions1.pdf) | This package implemented to display emoji. keyboard in chat.
+##### [React Native Emoji Modal](https://github.com/FurkanGundogan/RTalk-ChatApp-ReactNative/blob/master/Instructions1.pdf) | This package implemented to display emoji-keyboard in chat.
 ##### [React Native Vector Icons](https://github.com/FurkanGundogan/RTalk-ChatApp-ReactNative/blob/master/Instructions1.pdf) | RN-vector-icons are used while styling.
 
 <h2>Project Instructions</h2>
