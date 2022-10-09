@@ -2,7 +2,7 @@
 
 <h1 align="center">R-Talks</h1>
 <p>R-Talks is a chat application developed using React-Native.</p>
-<b>Features</b>
+<h2>Features</h2>
 
       🔑 User authentication 
 
@@ -12,15 +12,18 @@
 
       📸 Image sharing as stories
 
-<b>This project has been developed according to the following two instruction papers.</b>
-      
+https://user-images.githubusercontent.com/43653193/194752385-833f8f09-fee5-42f6-9c28-d71127044710.mp4
+
+<h2>Project Instructions</h2>
+<p>R-Talks developed according to these documents:</p>
+
 [Document 1](https://github.com/FurkanGundogan/RTalk-ChatApp-ReactNative/blob/master/Instructions1.pdf) 
       
 [Document 2](https://expo.dev/) 
 
 
 
-https://user-images.githubusercontent.com/43653193/194752385-833f8f09-fee5-42f6-9c28-d71127044710.mp4
+
 
 
 
