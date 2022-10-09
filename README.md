@@ -1,5 +1,8 @@
-# RTalk-ChatApp-ReactNative
 
+
+<h1 align="center">
+RTalks
+</h1>
 
 
 https://user-images.githubusercontent.com/43653193/194752385-833f8f09-fee5-42f6-9c28-d71127044710.mp4
