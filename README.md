@@ -12,6 +12,13 @@
 
       📸 Image sharing as stories
 
+<b>This project has been developed according to the following two instruction papers.</b>
+      
+[Document 1](https://github.com/FurkanGundogan/RTalk-ChatApp-ReactNative/blob/master/Instructions1.pdf) 
+      
+[Document 2](https://expo.dev/) 
+
+
 
 https://user-images.githubusercontent.com/43653193/194752385-833f8f09-fee5-42f6-9c28-d71127044710.mp4
 
