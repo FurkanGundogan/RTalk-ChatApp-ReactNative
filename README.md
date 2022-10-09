@@ -22,17 +22,17 @@ https://user-images.githubusercontent.com/43653193/194752385-833f8f09-fee5-42f6-
 
 <h2>Used Techs</h2>
 
-##### [Expo CLI](https://github.com/FurkanGundogan/RTalk-ChatApp-ReactNative/blob/master/Instructions1.pdf) | This app created with Expo CLI.
-##### [React Navigation](https://github.com/FurkanGundogan/RTalk-ChatApp-ReactNative/blob/master/Instructions1.pdf) | Stack Navigator implemented to handle routing.
-##### [Redux Toolkit](https://github.com/FurkanGundogan/RTalk-ChatApp-ReactNative/blob/master/Instructions1.pdf) | I used Redux to state management.
-##### [Firebase Authentication](https://github.com/FurkanGundogan/RTalk-ChatApp-ReactNative/blob/master/Instructions1.pdf) | This project contains firebase email authentication for sign-in / sign-up.
-##### [Firebase Firestore DB](https://github.com/FurkanGundogan/RTalk-ChatApp-ReactNative/blob/master/Instructions1.pdf) | I did store collections in firestore (e.g. users, chats).
-##### [Firebase Storage](https://github.com/FurkanGundogan/RTalk-ChatApp-ReactNative/blob/master/Instructions1.pdf) | I used firebase storage to manage image sharing.
-##### [Async Storage](https://github.com/FurkanGundogan/RTalk-ChatApp-ReactNative/blob/master/Instructions1.pdf) | I implemented the async-storage to provide auto-login.
-##### [Expo Image Picker](https://github.com/FurkanGundogan/RTalk-ChatApp-ReactNative/blob/master/Instructions1.pdf) | I used this feature to be able to upload image on app.
-##### [Expo Location](https://github.com/FurkanGundogan/RTalk-ChatApp-ReactNative/blob/master/Instructions1.pdf) | I implemented expo-location to provide sharing current location in chat.
-##### [React Native Emoji Modal](https://github.com/FurkanGundogan/RTalk-ChatApp-ReactNative/blob/master/Instructions1.pdf) | This package implemented to display emoji-keyboard in chat.
-##### [React Native Vector Icons](https://github.com/FurkanGundogan/RTalk-ChatApp-ReactNative/blob/master/Instructions1.pdf) | RN-vector-icons are used while styling.
+##### [Expo CLI](https://docs.expo.dev/workflow/expo-cli/) | This app created with Expo CLI.
+##### [React Navigation](https://reactnavigation.org/docs/stack-navigator/) | Stack Navigator implemented to handle routing.
+##### [Redux Toolkit](https://redux-toolkit.js.org/) | I used Redux to state management.
+##### [Firebase Authentication](https://firebase.google.com/docs/auth/web/email-link-auth) | This project contains firebase email authentication for sign-in / sign-up.
+##### [Firebase Firestore DB](https://firebase.google.com/docs/firestore) | I did store collections in firestore (e.g. users, chats).
+##### [Firebase Storage](https://firebase.google.com/docs/storage) | I used firebase storage to manage image sharing.
+##### [Async Storage](https://github.com/react-native-async-storage/async-storage) | I implemented the async-storage to provide auto-login.
+##### [Expo Image Picker](https://docs.expo.dev/versions/latest/sdk/imagepicker/) | I used this feature to be able to upload image on app.
+##### [Expo Location](https://docs.expo.dev/versions/latest/sdk/map-view/) | I implemented expo-location to provide sharing current location in chat.
+##### [React Native Emoji Modal](https://github.com/staltz/react-native-emoji-modal) | This package implemented to display emoji-keyboard in chat.
+##### [React Native Vector Icons](https://oblador.github.io/react-native-vector-icons/) | RN-vector-icons are used while styling.
 
 <h2>Project Instructions</h2>
 <p>R-Talks developed according to these documents:</p>
