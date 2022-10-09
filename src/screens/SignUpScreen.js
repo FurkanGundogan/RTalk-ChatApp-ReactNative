@@ -12,11 +12,11 @@ import { setDoc, doc } from "firebase/firestore";
 import SignStyles from "../styles/SignStyles";
 const SignUpScreen = ({ navigation }) => {
   const initialState = {
-    email: "furkangundogan14@outlook.com",
-    password: "123123",
-    confirmPassword: "123123",
-    firstName: "Furkan",
-    lastName: "Gundogan",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    firstName: "",
+    lastName: "",
   };
   const [userInfo, setuserInfo] = useState(initialState);
   const [loading, setLoading] = useState(false);

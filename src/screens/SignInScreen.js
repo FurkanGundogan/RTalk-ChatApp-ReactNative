@@ -18,8 +18,8 @@ import SignStyles from "../styles/SignStyles";
 const SignInScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const initialState = {
-    email: "furkangundogan14@outlook.com",
-    password: "123123",
+    email: "",
+    password: "",
   };
   const [userInfo, setuserInfo] = useState(initialState);
   const [loading, setLoading] = useState(false);

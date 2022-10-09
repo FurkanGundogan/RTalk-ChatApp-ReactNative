@@ -34,7 +34,7 @@ const ChatItem = ({ item, contactId }) => {
             : styles.chatTextTimeRight
         }
       >
-        {time}
+        {time && time}
       </Text>
       {
         item?.data?.location &&

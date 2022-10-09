@@ -47,7 +47,7 @@ const UserInfo = () => {
         dispatch(
           updateUser({ ...userInfo, photoURL: newUrl != "" ? newUrl : oldUrl })
         );
-        alert("Update Successfull");
+        alert("Profile Updated Successfully");
         setLoading(false);
       })
       .catch((err) => {

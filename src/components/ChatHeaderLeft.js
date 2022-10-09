@@ -45,7 +45,7 @@ const ChatHeaderLeft = ({ contactId }) => {
           </TouchableOpacity>
           <View style={styles.nameWrapper}>
             <Text style={styles.name}>
-              {chatContact?.firstName + " " + chatContact?.lastName}
+              {chatContact && chatContact?.firstName + " " + chatContact?.lastName}
             </Text>
           </View>
         </View>
