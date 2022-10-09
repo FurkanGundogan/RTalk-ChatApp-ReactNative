@@ -46,3 +46,21 @@ https://user-images.githubusercontent.com/43653193/194752769-49fbf651-c282-47fd-
 
 https://user-images.githubusercontent.com/43653193/194752773-e90aac3c-77d4-49ce-972d-d9f978771810.mp4
 
+<h2>Installation</h2>
+
+Clone repo      
+```
+git clone
+```
+Install dependencies   
+```
+npm install
+```
+Start project
+```
+expo start
+```
+Debug
+```
+Press 'a' to run android or use qrcode on your android device 
+```
