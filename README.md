@@ -20,6 +20,12 @@ If the user presses the button with the message icon, the contact list opens. Th
 
 https://user-images.githubusercontent.com/43653193/194752385-833f8f09-fee5-42f6-9c28-d71127044710.mp4
 
+<h2>Gallery</h2>
+
+![Screens](https://user-images.githubusercontent.com/43653193/194760969-bb9cb4b0-80b4-418b-b67d-35e522b0b8cf.jpg)
+
+![Screens2](https://user-images.githubusercontent.com/43653193/194761193-c75ef402-6b7e-4600-845a-1950222eb35e.jpg)
+
 <h2>Used Techs</h2>
 
 ##### [Expo CLI](https://docs.expo.dev/workflow/expo-cli/) | This app created with Expo CLI.
@@ -57,11 +63,6 @@ Users can view their profiles by clicking the button in the upper right corner o
 
 https://user-images.githubusercontent.com/43653193/194752773-e90aac3c-77d4-49ce-972d-d9f978771810.mp4
 
-<h2>Gallery</h2>
-
-![Screens](https://user-images.githubusercontent.com/43653193/194760969-bb9cb4b0-80b4-418b-b67d-35e522b0b8cf.jpg)
-
-![Screens2](https://user-images.githubusercontent.com/43653193/194761193-c75ef402-6b7e-4600-845a-1950222eb35e.jpg)
 
 <h2>Feature Works</h2>
       
